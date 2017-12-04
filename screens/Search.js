@@ -88,9 +88,13 @@ class Search extends Component {
     options === "startdate"
       ? this.setState({
           startDate,
-          endDate: startDate
+          endDate: startDate,
+          selectedFilter: ""
         })
-      : this.setState({ endDate });
+      : this.setState({ 
+          endDate, 
+          selectedFilter: "" 
+        });
     searchLaunches(startDate, endDate);
   };
 
@@ -155,8 +159,7 @@ class Search extends Component {
             backgroundColor={blue}
             onPress={() => this.setState({
               isFilterModalVisible: true
-            })}
-          />
+            })}/>
         </View>
         <Modal
           isVisible={isFilterModalVisible}
@@ -164,15 +167,13 @@ class Search extends Component {
           onBackdropPress={() =>
             this.setState({
               isFilterModalVisible: false
-            })}
-        >
+            })}>
           <FilterPanel
             selectedFilter={selectedFilter}
             onFilter={this.handleFilter}
             closeModal={() => this.setState({ 
                 isFilterModalVisible: false 
-            })}
-          />
+            })}/>
         </Modal>
 
         {isFetching ? (

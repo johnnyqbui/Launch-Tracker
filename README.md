@@ -1,6 +1,6 @@
 # Launch Tracker
 
-Users will be able to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+Users should be able to track launches and add them to their favorites list. Search by start and end dates. Filter by agency and county code.
 
 ## Platforms tested 
 

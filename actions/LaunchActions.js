@@ -10,6 +10,9 @@ import {
 	REMOVE_LAUNCH
 } from "./types";
 
+import { AsyncStorage } from "react-native";
+const LAUNCH_TRACKER_STORAGE_KEY = "Launchtracker:key";
+
 export const getNextLaunches = () => dispatch => {
 	dispatch({
 		type: FETCH_NEXT_LAUNCHES_REQUEST

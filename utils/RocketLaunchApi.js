@@ -1,6 +1,5 @@
 import { AsyncStorage } from "react-native";
-export const LAUNCH_TRACKER_STORAGE_KEY = "Launchtracker:key";
-
+const LAUNCH_TRACKER_STORAGE_KEY = "Launchtracker:key";
 const baseApi = "https://launchlibrary.net/1.2/launch";
 
 export const getNextLaunches = () =>

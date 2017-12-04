@@ -6,18 +6,27 @@ import {
   Dimensions,
   TouchableWithoutFeedback
 } from "react-native";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { blue, white } from "../utils/colors";
 import { deDupeAndFlattenArr } from "../utils/helpers";
 
-const FilterPanel = ({ initialFetchedLaunches, selectedFilter, onFilter, closeModal }) => {
+const FilterPanel = ({
+  initialFetchedLaunches,
+  selectedFilter,
+  onFilter,
+  closeModal
+}) => {
   // Dedupe and flatten arrays
   const abbrev = "abbrev";
   const countryCode = "countryCode";
   const agencyAbbrevList = deDupeAndFlattenArr(initialFetchedLaunches, abbrev);
-  const countryCodeList = deDupeAndFlattenArr(initialFetchedLaunches,countryCode);
+  const countryCodeList = deDupeAndFlattenArr(
+    initialFetchedLaunches,
+    countryCode
+  );
   return (
     <View style={styles.filterPanelContainer}>
       <Text style={styles.title}>Filters</Text>
@@ -66,10 +75,10 @@ const FilterPanel = ({ initialFetchedLaunches, selectedFilter, onFilter, closeMo
 
 FilterPanel.propTypes = {
   initialFetchedLaunches: PropTypes.array,
-  selectedFilter: PropTypes.string, 
-  onFilter: PropTypes.func, 
+  selectedFilter: PropTypes.string,
+  onFilter: PropTypes.func,
   closeModal: PropTypes.func
-}
+};
 
 const { width, height } = Dimensions.get("window");
 
@@ -84,8 +93,6 @@ const styles = StyleSheet.create({
     color: white,
     fontSize: 22,
     padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: white
   },
   filterListsContainer: {
     paddingLeft: 40,
@@ -98,7 +105,7 @@ const styles = StyleSheet.create({
   },
   filterTypeTitle: {
     marginRight: 30,
-    padding: 5,
+    paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: white
   },
@@ -128,4 +135,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FilterPanel;
+const mapStateToProps = ({ initialFetchedLaunches }) => ({ initialFetchedLaunches });
+
+export default connect(mapStateToProps, null)(FilterPanel);
