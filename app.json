@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "sdkVersion": "23.0.0",
+    "name": "Launch-Tracker",
+    "description": "Track rocket launches on the go!",
+    "slug": "launchtracker",
+    "version": "1.0",
+    "ios": {
+     "bundleIdentifier": "org.launchtracker.exp",
+    },
+    "android": {
+     "package": "org.launchtracker.exp",
+    }
+  }
+}
