@@ -2,6 +2,10 @@
   "name": "launch-tracker",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "5.3.0",
+    "node": "8.4.0"
+  },
   "devDependencies": {
     "jest-expo": "23.0.0",
     "react-native-scripts": "1.8.1",

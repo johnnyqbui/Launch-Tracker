@@ -16,9 +16,13 @@ Users should be able to track launches and add them to their favorites list. Sea
 
 ## Development
 
+* Node Environment tested:
+	- Npm 5.3.0
+	- Node 8.4.0
+
 * Install packages and start the app
-    - `npm install` or `yarn install`
-    - `npm run start` or `yarn start`
+  - `npm install` or `yarn install`
+  - `npm run start` or `yarn start`
 
 * Open up your expo app on your device and scan the QR code or run the simulator on your computer
 
