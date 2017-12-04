@@ -1,6 +1,6 @@
 # Launch Tracker
 
-Users should be able to track launches and add them to their favorites list. Search by start and end dates. Filter by agency and county code.
+Users should be able to track launches and add them to their favorites list. Search by start and end dates. Filter by agency and country code.
 
 ## Platforms tested 
 
