@@ -3,6 +3,15 @@ import { View, StyleSheet, Text, Image, Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import { Ionicons } from "@expo/vector-icons";
 
+const propTypes = {
+  name: PropTypes.string,
+  windowstart: PropTypes.string,
+  agencies: PropTypes.array,
+  location: PropTypes.object,
+  rocket: PropTypes.object,
+  favoritesLaunchIcon: PropTypes.object
+}
+
 const LaunchList = ({ name, windowstart, agencies, location, rocket, favoritesLaunchIcon }) => {
   const imageURL = rocket.imageURL.replace(/[0-9]{3,4}\./, '320.')
   return (
@@ -20,14 +29,7 @@ const LaunchList = ({ name, windowstart, agencies, location, rocket, favoritesLa
   );
 };
 
-LaunchList.propTypes = {
-  name: PropTypes.string,
-  windowstart: PropTypes.string,
-  agencies: PropTypes.array,
-  location: PropTypes.object,
-  rocket: PropTypes.object,
-  favoritesLaunchIcon: PropTypes.object
-}
+LaunchList.propTypes = propTypes;
 
 const { width, height } = Dimensions.get("window");
 

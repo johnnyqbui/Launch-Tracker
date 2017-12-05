@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 import DatePicker from "react-native-datepicker";
 import { blue, white } from "../utils/colors";
 
+const propTypes = {
+  startDate: PropTypes.string,
+  endDate: PropTypes.string,
+  onDateChange: PropTypes.func
+};
+
 const SearchPanel = ({ startDate, endDate, onDateChange }) => {
   const startdate = "startdate";
   const enddate = "enddate";
@@ -28,8 +34,7 @@ const SearchPanel = ({ startDate, endDate, onDateChange }) => {
           }}
           cancelBtnText={"Cancel"}
           confirmBtnText={"Confirm"}
-          onDateChange={startDate =>
-            onDateChange(startDate, endDate, startdate)}
+          onDateChange={startDate => onDateChange(startDate, endDate, startdate)}
         />
       </View>
       <View style={styles.datePickerContainer}>
@@ -58,11 +63,7 @@ const SearchPanel = ({ startDate, endDate, onDateChange }) => {
   );
 };
 
-SearchPanel.propTypes = {
-  startDate: PropTypes.string,
-  endDate: PropTypes.string,
-  onDateChange: PropTypes.func
-};
+SearchPanel.propTypes = propTypes;
 
 const { width, height } = Dimensions.get("window");
 

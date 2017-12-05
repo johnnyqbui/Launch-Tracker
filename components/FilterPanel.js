@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Text,
+  ScrollView,
   Dimensions,
   TouchableWithoutFeedback
 } from "react-native";
@@ -12,6 +13,13 @@ import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { blue, white } from "../utils/colors";
 import { deDupeAndFlattenArr } from "../utils/helpers";
+
+const propTypes = {
+  initialFetchedLaunches: PropTypes.array,
+  selectedFilter: PropTypes.string,
+  onFilter: PropTypes.func,
+  closeModal: PropTypes.func
+};
 
 const FilterPanel = ({
   initialFetchedLaunches,
@@ -23,10 +31,8 @@ const FilterPanel = ({
   const abbrev = "abbrev";
   const countryCode = "countryCode";
   const agencyAbbrevList = deDupeAndFlattenArr(initialFetchedLaunches, abbrev);
-  const countryCodeList = deDupeAndFlattenArr(
-    initialFetchedLaunches,
-    countryCode
-  );
+  const countryCodeList = deDupeAndFlattenArr(initialFetchedLaunches, countryCode);
+
   return (
     <View style={styles.filterPanelContainer}>
       <Text style={styles.title}>Filters</Text>
@@ -35,6 +41,7 @@ const FilterPanel = ({
           <View style={styles.filterTypeTitle}>
             <Text style={styles.filterText}>Agency: </Text>
           </View>
+          <ScrollView>
           {agencyAbbrevList.map((agency, i) => (
             <TouchableWithoutFeedback key={i} onPress={() => onFilter(agency)}>
               <View style={styles.list}>
@@ -45,11 +52,13 @@ const FilterPanel = ({
               </View>
             </TouchableWithoutFeedback>
           ))}
+          </ScrollView>
         </View>
         <View style={styles.listContainer}>
           <View style={styles.filterTypeTitle}>
             <Text style={styles.filterText}>Country: </Text>
           </View>
+          <ScrollView>
           {countryCodeList.map((country, i) => (
             <TouchableWithoutFeedback key={i} onPress={() => onFilter(country)}>
               <View style={styles.list}>
@@ -60,6 +69,7 @@ const FilterPanel = ({
               </View>
             </TouchableWithoutFeedback>
           ))}
+          </ScrollView>
         </View>
       </View>
       <Button
@@ -73,12 +83,7 @@ const FilterPanel = ({
   );
 };
 
-FilterPanel.propTypes = {
-  initialFetchedLaunches: PropTypes.array,
-  selectedFilter: PropTypes.string,
-  onFilter: PropTypes.func,
-  closeModal: PropTypes.func
-};
+FilterPanel.propTypes = propTypes;
 
 const { width, height } = Dimensions.get("window");
 
@@ -95,13 +100,16 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   filterListsContainer: {
-    paddingLeft: 40,
+    flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginBottom: 70 
   },
   listContainer: {
-    flex: 1
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 5
   },
   filterTypeTitle: {
     marginRight: 30,
@@ -118,12 +126,11 @@ const styles = StyleSheet.create({
   },
   list: {
     height: 50,
-    paddingVertical: 10,
-    paddingRight: 40,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: 'space-between',
+    marginRight: 20
   },
   button: {
     justifyContent: "center",

@@ -49,40 +49,6 @@ class Search extends Component {
     getNextLaunches();
   }
 
-  renderLaunchList = launch => {
-    const { navigation, saveLaunch, removeLaunch, favorites } = this.props;
-    const { id, name, windowstart, location, rocket } = launch;
-    const matchedFavorite = Object.keys(favorites).find(
-      favoriteId => parseInt(favoriteId) === id
-    );
-    return (
-      <LaunchList
-        key={id}
-        name={name}
-        windowstart={windowstart}
-        agencies={rocket.agencies}
-        location={location}
-        rocket={rocket}
-        navigation={navigation.navigate}
-        favoritesLaunchIcon={
-          matchedFavorite ? (
-            <Ionicons
-              name="ios-star"
-              size={35}
-              onPress={() => removeLaunch(id)}
-            />
-          ) : (
-            <Ionicons
-              name="ios-star-outline"
-              size={35}
-              onPress={() => saveLaunch(launch)}
-            />
-          )
-        }
-      />
-    );
-  };
-
   handleDateChange = (startDate, endDate, options) => {
     const { searchLaunches } = this.props;
     options === "startdate"
@@ -121,6 +87,40 @@ class Search extends Component {
           selectedFilter: ""
         });
       }
+    );
+  };
+
+  renderLaunchList = launch => {
+    const { navigation, saveLaunch, removeLaunch, favorites } = this.props;
+    const { id, name, windowstart, location, rocket } = launch;
+    const matchedFavorite = Object.keys(favorites).find(
+      favoriteId => parseInt(favoriteId) === id
+    );
+    return (
+      <LaunchList
+        key={id}
+        name={name}
+        windowstart={windowstart}
+        agencies={rocket.agencies}
+        location={location}
+        rocket={rocket}
+        navigation={navigation.navigate}
+        favoritesLaunchIcon={
+          matchedFavorite ? (
+            <Ionicons
+              name="ios-star"
+              size={35}
+              onPress={() => removeLaunch(id)}
+            />
+          ) : (
+            <Ionicons
+              name="ios-star-outline"
+              size={35}
+              onPress={() => saveLaunch(launch)}
+            />
+          )
+        }
+      />
     );
   };
 
@@ -175,19 +175,16 @@ class Search extends Component {
                 isFilterModalVisible: false 
             })}/>
         </Modal>
-
         {isFetching ? (
           <ActivityIndicator style={{ margin: 40 }} size={"large"} />
         ) : (
           <View style={styles.launchListContainer}>
-            <ScrollView
-              refreshControl={
+            <ScrollView refreshControl={
                 <RefreshControl
                   refreshing={refreshing}
                   onRefresh={this.handleRefresh}
                 />
-              }
-            >
+              }>
               <Text style={styles.refreshText}>
                 Pull Down to refresh next 10 Launches
               </Text>
